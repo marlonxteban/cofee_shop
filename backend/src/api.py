@@ -79,7 +79,7 @@ def create_drink(payload):
         abort(422)
 
     try:
-        drink = Drink(title=title, recipe=f'[{json.dumps(recipe)}]')
+        drink = Drink(title=title, recipe=json.dumps(recipe))
         drink.insert()
 
         return jsonify({
@@ -115,7 +115,7 @@ def update_drink(payload, id):
         if title:
             drink.title = title
         if recipe:
-            drink.recipe = f'[{json.dumps(recipe)}]'
+            drink.recipe = json.dumps(recipe)
         drink.update()
 
         return jsonify({
